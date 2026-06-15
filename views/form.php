@@ -41,6 +41,19 @@
                                     placeholder="Digite a duração do filme em minutos" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="classificacao" class="form-label">Classificação indicativa</label>
+                                <select name="classificacao" id="classificacao" class="form-select" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Livre">Livre</option>
+                                    <option value="Maior de 10 anos">Maior de 10 anos</option>
+                                    <option value="Maior de 12 anos">Maior de 12 anos</option>
+                                    <option value="Maior de 14 anos">Maior de 14 anos</option>
+                                    <option value="Maior de 16 anos">Maior de 16 anos</option>
+                                    <option value="Maior de 18 anos">Maior de 18 anos</option>
+                                </select>
+                            </div>
+
                             <button type="submit" class="btn btn-success">
                                 Cadastrar Filme
                             </button>

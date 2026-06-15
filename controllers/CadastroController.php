@@ -13,8 +13,9 @@ class CadastroController {
         $nome = trim($_POST["nome"] ?? "");
         $tema = trim($_POST["tema"] ?? "");
         $duracao = trim($_POST["duracao"] ?? "");
+        $classificacao = trim($_POST["classificacao"] ?? "");
 
-        if (empty($nome) || empty($tema) || empty($duracao)) {
+        if (empty($nome) || empty($tema) || empty($duracao) || empty($classificacao)) {
             return [
                 "sucesso" => false,
                 "mensagem" => "Todos os campos devem ser preenchidos."
@@ -22,7 +23,7 @@ class CadastroController {
         }
 
         try {
-            $filmes = new Filmes($nome, $tema, $duracao);
+            $filmes = new Filmes($nome, $tema, $duracao, $classificacao);
             $filmes->salvar();
 
             return [

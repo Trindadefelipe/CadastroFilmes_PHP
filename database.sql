@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS cadastro_filmes;
+
+USE cadastro_filmes;
+
+CREATE TABLE IF NOT EXISTS filmes (
+  id INT AUTO_INCREMENT PRIMARY KEY ,
+  nome VARCHAR(120) NOT NULL,
+  tema VARCHAR(80) NOT NULL,
+  duracao INT NOT NULL,
+  classificacao VARCHAR(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
