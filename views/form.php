@@ -61,6 +61,9 @@
                             <a href="index.php" class="btn btn-secondary">
                                 Limpar
                             </a>
+                            <a href="index.php?acao=listar" class="btn btn-secondary">
+                                Ver lista de filmes
+                            </a>
 
                         </form>
                     </div>

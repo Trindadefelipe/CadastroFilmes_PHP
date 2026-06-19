@@ -32,11 +32,33 @@ class Filmes
         return $stmt->execute();
     }
 
-    public function listar(): array{
+    public function listar(): array
+    {
         $sql = "SELECT id, nome, tema, duracao, classificacao
                 FROM filmes ORDER BY id DESC";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarPorId($id)
+    {
+        $sql = "SELECT * FROM filmes WHERE id = :id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizar($id)
+    {
+        $sql = "UPDATE filmes SET nome = :nome, tema = :tema, duracao = :duracao, classificacao = :classificacao WHERE id = :id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":tema", $this->tema);
+        $stmt->bindParam(":duracao", $this->duracao);
+        $stmt->bindParam(":classificacao", $this->classificacao);
+        $stmt->bindParam(":id", $id);
+        return $stmt->execute();
     }
 }
