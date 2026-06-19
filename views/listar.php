@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Resultado do Cadastro</title>
+    <title>Lista de Filmes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -21,6 +20,13 @@
                     </div>
 
                     <div class="card-body">
+
+                        <?php if (($_GET["msg"] ?? "") === "excluido"): ?>
+                        <div class="alert alert-success">
+                            Filme excluído com sucesso!
+                        </div>
+                        <?php endif; ?>
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -28,6 +34,7 @@
                                     <th>Tema</th>
                                     <th>Duração</th>
                                     <th>Classificação</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,6 +44,19 @@
                                     <td><?php echo $filme["tema"];?></td>
                                     <td><?php echo $filme["duracao"];?></td>
                                     <td><?php echo $filme["classificacao"];?></td>
+                                    <td>
+                                        <a href="index.php?acao=editar&id=<?php echo $filme['id']; ?>"
+                                            class="btn btn-sm btn-warning">
+                                            Editar
+                                        </a>
+                                        <a href="index.php?acao=excluir&id=<?php echo $filme['id']; ?>"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Tem certeza que deseja excluir?');">
+                                            Excluir
+                                        </a>
+
+                                    </td>
+
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

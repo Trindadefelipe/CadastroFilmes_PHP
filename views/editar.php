@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Filmes</title>
+    <title>Editar Filme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -23,11 +22,8 @@
                     <div class="card-body">
                         <form action="index.php?acao=atualizar" method="POST">
 
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Digite o numero do filme que deseja editar</label>
-                                <input type="hidden" name="id" value="<?php echo $filme['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $filmes['id']; ?>">
 
-                            </div>
 
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Nome do filme</label>
@@ -37,13 +33,13 @@
 
                             <div class=" mb-3">
                                 <label for="tema" class="form-label">Tema do filme</label>
-                                <input type="text" name="nome" id="nome" class="form-control"
+                                <input type="text" name="tema" id="tema" class="form-control"
                                     value="<?php echo $filme["tema"];?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="duracao" class="form-label">Duração do filme</label>
-                                <input type="text" name="nome" id="nome" class="form-control"
+                                <input type="number" name="duracao" id="duracao" class="form-control"
                                     value="<?php echo $filme["duracao"];?>" required>
                             </div>
 

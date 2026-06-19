@@ -13,7 +13,7 @@ A entidade principal é **Filme**, com os campos: `nome`, `tema`, `duracao` e
 
 - **PHP 8** (orientação a objetos, tipagem)
 - **MySQL / MariaDB** (acesso via **PDO**)
-- **Bootstrap 5** (interface)
+- **Bootstrap 5** (interface, servido localmente em `public/css/`)
 - Padrão **MVC**
 
 ---
@@ -23,17 +23,24 @@ A entidade principal é **Filme**, com os campos: `nome`, `tema`, `duracao` e
 ```
 CadastroFilmes_PHP/
 ├── config/
-│   └── Database.php            # Conexão PDO (classe reutilizável)
+│   └── Database.php              # Conexão PDO (classe reutilizável)
 ├── controllers/
-│   ├── CadastroController.php  # Create
-│   └── ListagemController.php  # Read
+│   ├── CadastroController.php    # Create
+│   ├── ListagemController.php    # Read
+│   ├── EdicaoController.php      # Update (buscar + atualizar)
+│   └── ExclusaoController.php    # Delete
 ├── models/
-│   └── Filmes.php              # Entidade + SQL (INSERT, SELECT, ...)
+│   └── Filmes.php                # Entidade + SQL (INSERT, SELECT, UPDATE, DELETE)
 ├── views/
-│   ├── form.php                # Formulário de cadastro (Bootstrap)
-│   └── mensagem.php            # Tela de sucesso/erro
-├── database.sql                # Script de criação do banco e da tabela
-├── index.php                   # Roteador (lê ?acao= e chama o controller)
+│   ├── form.php                  # Formulário de cadastro
+│   ├── listar.php                # Tabela com todos os filmes + ações
+│   ├── editar.php                # Formulário de edição (pré-preenchido)
+│   └── mensagem.php              # Tela de sucesso/erro
+├── public/
+│   └── css/
+│       └── bootstrap.min.css     # Bootstrap local
+├── database.sql                  # Script de criação do banco e da tabela
+├── index.php                     # Roteador (lê ?acao= e chama o controller)
 └── README.md
 ```
 
@@ -48,7 +55,7 @@ Navegador  ──>  index.php  ──>  Controller  ──>  Model  ──>  Ban
 
 - **index.php** — lê `?acao=` e decide qual controller chamar (roteamento).
 - **Controller** — recebe os dados do formulário, valida e chama o Model.
-- **Model (`Filmes`)** — fala com o banco via PDO (INSERT / SELECT / ...).
+- **Model (`Filmes`)** — fala com o banco via PDO (INSERT / SELECT / UPDATE / DELETE).
 - **View** — monta o HTML exibido ao usuário.
 - **Database** — isola a conexão PDO em um único lugar, reaproveitada por todos.
 
@@ -102,24 +109,25 @@ CREATE TABLE IF NOT EXISTS filmes (
 
 ## 🔗 Rotas
 
-| URL                       | Ação            | Status |
-|---------------------------|-----------------|--------|
-| `index.php`               | Exibe o formulário de cadastro | ✅ |
-| `index.php?acao=cadastrar`| Salva um novo filme (**Create**) | ✅ |
-| `index.php?acao=listar`   | Lista os filmes (**Read**)       | 🚧 em desenvolvimento |
-| `index.php?acao=editar`   | Edita um filme (**Update**)      | 🚧 planejado |
-| `index.php?acao=excluir`  | Exclui um filme (**Delete**)     | 🚧 planejado |
-
-> O andamento detalhado das etapas está em [`plano.md`](plano.md).
+| URL                        | Ação                                    |
+|----------------------------|-----------------------------------------|
+| `index.php`                | Exibe o formulário de cadastro          |
+| `index.php?acao=cadastrar` | Salva um novo filme (**Create**)        |
+| `index.php?acao=listar`    | Lista os filmes (**Read**)              |
+| `index.php?acao=editar&id=X`   | Abre o formulário de edição do filme X |
+| `index.php?acao=atualizar` | Salva as alterações (**Update**)        |
+| `index.php?acao=excluir&id=X`  | Exclui o filme X (**Delete**)       |
 
 ---
 
-## ✅ Status do CRUD
+## ✅ Funcionalidades
 
-- [x] **Create** — cadastro de filmes funcionando
-- [ ] **Read** — listagem
-- [ ] **Update** — edição
-- [ ] **Delete** — exclusão
+- [x] **Create** — cadastro de filmes
+- [x] **Read** — listagem em tabela
+- [x] **Update** — edição com formulário pré-preenchido
+- [x] **Delete** — exclusão com confirmação
+- [x] Mensagens de sucesso/erro em todas as operações
+- [x] Navegação entre as páginas
 
 ---
 

@@ -61,4 +61,12 @@ class Filmes
         $stmt->bindParam(":id", $id);
         return $stmt->execute();
     }
+
+    public function excluir($id)
+    {
+        $sql = "DELETE FROM filmes WHERE id = :id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        return $stmt->execute();
+    }
 }

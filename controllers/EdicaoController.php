@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . "/../models/Filmes.php";
 
-class EdicaoController {
-    public function edicao(): array {
+class EdicaoController
+{
+    public function edicao(): array
+    {
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             return [
                 "sucesso" => false,
@@ -24,19 +26,23 @@ class EdicaoController {
         }
 
         try {
-            $filmes = new Filmes ($nome, $tema, $duracao, $classificacao);
+            $filmes = new Filmes($nome, $tema, $duracao, $classificacao);
             $filmes->atualizar($id);
 
             return [
                 "sucesso" => true,
                 "mensagem" => "Filme atualizado com sucesso!"
             ];
-
         } catch (PDOException $erro) {
             return [
                 "sucesso" => false,
                 "mensagem" => "Erro ao atualizar filme. {$erro->getMessage()}"
             ];
         }
+    }
+    public function buscar($id)
+    {
+        $filme = new Filmes();
+        return $filme->buscarPorId($id);
     }
 }
